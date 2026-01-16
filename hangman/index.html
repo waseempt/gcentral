@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="header">
+        <a href="../index.html" id="navback">
+            <h3>Back Home</h3>
+        </a>
+        <a href="../index.html" id="homehref">
+            <img src="../media/GCentral.png" alt="G Logo" id="mainlogo"/>
+        </a>
+    </div>
+    <div class="game-container">
+        <header class="game-header">
+            <h1>Hangman Game</h1>
+            <div class="game-stats">
+                <div class="wrong-guesses">
+                    <span>Wrong guesses: </span>
+                    <span class="wrong-count">0</span>
+                    <span>/6</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="game-main">
+            <!-- Hangman Drawing -->
+            <div class="hangman-container">
+                <svg class="hangman-svg" viewBox="0 0 200 250">
+                    <!-- Gallows -->
+                    <line x1="10" y1="230" x2="150" y2="230" stroke="#8B4513" stroke-width="4"/>
+                    <line x1="30" y1="230" x2="30" y2="20" stroke="#8B4513" stroke-width="4"/>
+                    <line x1="30" y1="20" x2="120" y2="20" stroke="#8B4513" stroke-width="4"/>
+                    <line x1="120" y1="20" x2="120" y2="50" stroke="#8B4513" stroke-width="4"/>
+                    
+                    <!-- Body parts (initially hidden) -->
+                    <circle class="hangman-part head" cx="120" cy="60" r="10" stroke="#333" stroke-width="3" fill="none"/>
+                    <line class="hangman-part body" x1="120" y1="70" x2="120" y2="150" stroke="#333" stroke-width="3"/>
+                    <line class="hangman-part left-arm" x1="120" y1="90" x2="90" y2="120" stroke="#333" stroke-width="3"/>
+                    <line class="hangman-part right-arm" x1="120" y1="90" x2="150" y2="120" stroke="#333" stroke-width="3"/>
+                    <line class="hangman-part left-leg" x1="120" y1="150" x2="90" y2="180" stroke="#333" stroke-width="3"/>
+                    <line class="hangman-part right-leg" x1="120" y1="150" x2="150" y2="180" stroke="#333" stroke-width="3"/>
+                </svg>
+            </div>
+
+            <!-- Word Display -->
+            <div class="word-container">
+                <div class="word-display">
+                    <!-- Letter placeholders will be added by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Alphabet Buttons -->
+            <div class="alphabet-container">
+            </div>
+        </main>
+
+        <!-- Game Status Messages -->
+        <div class="game-status">
+            <div class="status-message win-message">
+                <h2>🎉 Congratulations!</h2>
+                <p>You won the game!</p>
+            </div>
+            <div class="status-message lose-message">
+                <h2>💀 Game Over!</h2>
+                <p>Better luck next time!</p>
+                <p>The word was: <span class="correct-word"></span></p>
+            </div>
+        </div>
+
+        <!-- Game Controls -->
+        <footer class="game-footer">
+            <button class="control-btn new-game-btn">New Game</button>
+        </footer>
+    </div>
+    <script src="words.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

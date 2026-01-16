@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subways of Budapest</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="header">
+        <a href="../index.html" id="navback">
+            <h3>Back Home</h3>
+        </a>
+        <a href="../index.html" id="homehref">
+            <img src="../media/GCentral.png" alt="G Logo" id="mainlogo"/>
+        </a>
+    </div>
+    <div id="gamediv" class="hidden">
+        <div id="gameplaydiv" class="hidden">
+            <div id="leftpanel" class="leftpanel">
+                <h1 id="playername">Player 1</h1>
+                <div id="railwayprog">
+                </div>
+                <div id="scoring">
+                    <h1>Scoring</h1>
+                    <h4>Railway Stations Scoring Scale</h4>
+                    <progress id="railwayprogress" value="0" max="25" style="width: 90%"></progress>
+                    <p id="railwayscore">0 Points</p>
+                    <table id="livescoretable">
+                    </table>
+                </div>
+                <div class="controls">
+                    <button id="backbtn" class="btng">Back Home</button>
+                    <button id="tryagainbtn" class="btng">Try Again</button>
+                </div>
+            </div>
+            <div id="centralpanel">
+                <h2 id="errormessage"></h2>
+                <table id="mapgrid"></table>
+                <canvas id="mapcanvas" width="780" height="780"></canvas>
+            </div>
+            <div id="rightpanel">
+                <h1 id="timer">00:00</h1>
+                <h2 id="roundtext">Round 1: M1</h2>
+                <p>Draw a Card:</p>
+                <img id="cardback" src="media/cardback.png" class="card" alt="Card Back">
+                <img id="cardimg" src="media/drawcard.png" class="card" alt="Card Image">
+                <p>Card count: <span id="cardcount">0/8</span></p>
+            </div>
+        </div>
+        <div id="rulesdivg" class="hidden">
+            <h1>Rules</h1>
+            <h3>Rounds and Turns</h3>
+            <p>
+                There are <b>4 rounds</b>, each representing a different metro line and starting from a different station. Each round consists of <b>8 turns</b> where you will draw cards to build your subway network.
+            </p>
+            <h3>Drawing Cards</h3>
+            <p>
+                You will draw a card at each turn. Your card will either have the letter A, B, C, D or a Joker symbol. Each letter corresponds to a specific type of station on the metro line you are allowed to connect to, while the Joker can be used to connect to any station.
+                <ul>
+                    <li>Drawing a segment is always optional. If you cannot or don’t want to draw, you may simply draw the next card.</li>
+                    <li>Each segment must be a straight line, either horizontal, vertical or diagonal at 45°.</li>
+                    <li>In a round, the first segment must start from the starting station of the current line and end at a station whose type matches the drawn card.</li>
+                    <li>Every subsequent segment must start from one of the current line’s endpoints and end at a station whose type matches the card.</li>
+                    <li>Each segment must connect exactly two stations.</li>
+                    <li>A segment cannot pass through a third station.</li>
+                    <li>Segments cannot cross other segments in open areas — only at stations.</li>
+                    <li>A line cannot re-enter a station it has already visited. However, you may connect to stations already used by other lines — these become busy junctions.</li>
+                    <li>You cannot draw multiple segments between the same two stations (no parallel segments), even between different lines.</li>
+                    <li>The station "Deák tér" acts as a Joker — any card may connect to it, as long as other rules are followed.</li>
+                </ul>
+            </p>
+            <h3>Scoring</h3>
+            <h4>Scoring Each Round</h4>
+            <p>
+                At the end of each round, your score for that round is calculated based on the following
+                <ul>
+                    <li>ND = Number of districts this line passes through</li>
+                    <li>NS = Number of stations it touches in the district where it has the most stations</li>
+                    <li>CD = Number of times it crosses the Danube</li>
+                    <li>RS = (ND × NS) + CD → this round’s score</li>
+                </ul>
+            </p>
+            <h4>Final Score Calculation</h4>
+            <p>
+                <ul>
+                    <li>Rounds: sum of all RS values → Sum(RS) = (RS1 + RS2 + RS3 + RS4)</li>
+                    <li>Railway stations: every time a line enters a railway station, the Railway Stations Scoring Scale goes up. The maximum it can get to is 25 points after entering a railway station 10 times. This value (NR) is added to the final score once.</li>
+                    <li>Junctions: We count how many stations are served by two different metro lines (J2), how many by three different lines (J3), and how many by all four metro lines (J4).</li>
+                    <li>Final score = Sum(FP) + PP + (2 × CSP2) + (5 × CSP3) + (9 × CSP4)</li>
+                </ul>
+            </p>
+            <h4>Fortunately, we calculate your score for you so you can focus on building the best subway network possible!</h4>
+        </div>
+    </div>
+
+    <div id="menudiv">
+        <h1 id="title">Subways of Budapest</h1>
+        <div id="inputdiv">
+            <input type="text" placeholder="Name" id="namefield">
+            <div id="menubtns">
+                <button id="startbtn">Start Game</button>
+                <button id="rulesbtnm" class="rulesbtn">Rules</button>
+            </div>
+        </div>
+        <div id="rulesdivm" class="rulesdiv hidden">
+            <h1>Rules</h1>
+            <h3>Rounds and Turns</h3>
+            <p>
+                There are <b>4 rounds</b>, each representing a different metro line and starting from a different station. Each round consists of <b>8 turns</b> where you will draw cards to build your subway network.
+            </p>
+            <h3>Drawing Cards</h3>
+            <p>
+                You will draw a card at each turn. Your card will either have the letter A, B, C, D or a Joker symbol. Each letter corresponds to a specific type of station on the metro line you are allowed to connect to, while the Joker can be used to connect to any station.
+                <ul>
+                    <li>Drawing a segment is always optional. If you cannot or don’t want to draw, you may simply draw the next card.</li>
+                    <li>Each segment must be a straight line, either horizontal, vertical or diagonal at 45°.</li>
+                    <li>In a round, the first segment must start from the starting station of the current line and end at a station whose type matches the drawn card.</li>
+                    <li>Every subsequent segment must start from one of the current line’s endpoints and end at a station whose type matches the card.</li>
+                    <li>Each segment must connect exactly two stations.</li>
+                    <li>A segment cannot pass through a third station.</li>
+                    <li>Segments cannot cross other segments in open areas — only at stations.</li>
+                    <li>A line cannot re-enter a station it has already visited. However, you may connect to stations already used by other lines — these become busy junctions.</li>
+                    <li>You cannot draw multiple segments between the same two stations (no parallel segments), even between different lines.</li>
+                    <li>The station "Deák tér" acts as a Joker — any card may connect to it, as long as other rules are followed.</li>
+                </ul>
+            </p>
+            <h3>Scoring</h3>
+            <h4>Scoring Each Round</h4>
+            <p>
+                At the end of each round, your score for that round is calculated based on the following
+                <ul>
+                    <li>ND = Number of districts this line passes through</li>
+                    <li>NS = Number of stations it touches in the district where it has the most stations</li>
+                    <li>CD = Number of times it crosses the Danube</li>
+                    <li>RS = (ND × NS) + CD → this round’s score</li>
+                </ul>
+            </p>
+            <h4>Final Score Calculation</h4>
+            <p>
+                <ul>
+                    <li>Rounds: sum of all RS values → Sum(RS) = (RS1 + RS2 + RS3 + RS4)</li>
+                    <li>Railway stations: every time a line enters a railway station, the Railway Stations Scoring Scale goes up. The maximum it can get to is 25 points after entering a railway station 10 times. This value (NR) is added to the final score once.</li>
+                    <li>Junctions: We count how many stations are served by two different metro lines (J2), how many by three different lines (J3), and how many by all four metro lines (J4).</li>
+                    <li>Final score = Sum(FP) + PP + (2 × CSP2) + (5 × CSP3) + (9 × CSP4)</li>
+                </ul>
+            </p>
+            <h4>Fortunately, we calculate your score for you so you can focus on building the best subway network possible!</h4>
+        </div>
+        <div id="menuscores">
+            <table id="highscoresm"></table>
+        </div>
+    </div>
+    <!-- <script src="stations.json"></script> -->
+    <script src="main.js" type="module"></script>
+</body>
+</html>

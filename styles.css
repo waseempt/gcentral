@@ -1,0 +1,95 @@
+body {
+    background-color: #2c003e;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff;
+    font-family: 'lucida console', monospace;
+}
+
+#mainlogo {
+    width: 400px;
+    height: auto;
+}
+
+#header {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 40px;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: baseline;
+    gap: 20px;
+    padding: 0 20px;
+}
+
+.gameslist {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #4c0e5f transparent;
+    gap: 30px;
+}
+
+.gameitem {
+    padding: 15px;
+    width: 300px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.gameitem a {
+    text-decoration: none;
+}
+
+.gamethumb {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 15px;
+    border-color: #ffffff;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+}
+
+.gamethumb:hover {
+    transform: scale(1.05);
+}
+
+.gametitle {
+    color: #ffffff;
+    font-family: 'lucida console', monospace;
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.featuredgame {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background-color: #3e0050;
+    border-radius: 15px;
+    margin-bottom: 40px;
+}
+
+.gamedesc {
+    color: #dddddd;
+    font-family: 'lucida console', monospace;
+    font-size: 1em;
+}
+
+.gamedetails {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

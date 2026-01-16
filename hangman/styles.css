@@ -1,0 +1,444 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff;
+    font-family: 'lucida console', monospace;
+}
+
+#mainlogo {
+    width: 400px;
+    height: auto;
+}
+
+#navback {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    text-decoration: none;
+    color: #ffffff;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #2c003e;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.game-container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 800px;
+    width: 100%;
+    min-height: 700px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.game-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Header Styles */
+.game-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.game-header h1 {
+    color: #333;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.game-stats {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.wrong-guesses {
+    background: #f8f9fa;
+    padding: 10px 20px;
+    border-radius: 25px;
+    color: #666;
+    font-weight: bold;
+    border: 2px solid #e9ecef;
+}
+
+.wrong-count {
+    color: #dc3545;
+    font-size: 1.2em;
+}
+
+/* Main Game Area */
+.game-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+/* Hangman Drawing */
+.hangman-container {
+    width: 200px;
+    height: 250px;
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.hangman-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.hangman-part {
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.6s ease-in-out;
+}
+
+/* Revealed hangman part animation */
+.hangman-part.revealed {
+    opacity: 1;
+    transform: scale(1);
+    animation: hangmanReveal 0.8s ease-out;
+}
+
+@keyframes hangmanReveal {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(-180deg);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.2) rotate(-90deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+/* Word Display */
+.word-container {
+    text-align: center;
+}
+
+.word-display {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.word-letter {
+    width: 40px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #333;
+    border-bottom: 3px solid #333;
+    transition: all 0.3s ease;
+}
+
+/* Revealed letter animation */
+.word-letter.revealed {
+    color: #28a745;
+    border-bottom-color: #28a745;
+    transform: scale(1.1);
+    animation: letterReveal 0.5s ease;
+}
+
+/* End game letter states */
+.word-letter.correct-final {
+    color: #28a745;
+    border-bottom-color: #28a745;
+    background: rgba(40, 167, 69, 0.1);
+    transform: scale(1.05);
+    animation: finalCorrect 0.8s ease;
+}
+
+.word-letter.incorrect-final {
+    color: #dc3545;
+    border-bottom-color: #dc3545;
+    background: rgba(220, 53, 69, 0.1);
+    transform: scale(1.05);
+    animation: finalIncorrect 0.8s ease;
+}
+
+@keyframes letterReveal {
+    0% { 
+        transform: scale(1) rotateY(0deg);
+        opacity: 0.5;
+    }
+    50% { 
+        transform: scale(1.2) rotateY(180deg);
+    }
+    100% { 
+        transform: scale(1.1) rotateY(0deg);
+        opacity: 1;
+    }
+}
+
+@keyframes finalCorrect {
+    0% { 
+        transform: scale(1);
+        background: transparent;
+    }
+    50% { 
+        transform: scale(1.2);
+        background: rgba(40, 167, 69, 0.3);
+        box-shadow: 0 0 15px rgba(40, 167, 69, 0.5);
+    }
+    100% { 
+        transform: scale(1.05);
+        background: rgba(40, 167, 69, 0.1);
+        box-shadow: 0 0 5px rgba(40, 167, 69, 0.2);
+    }
+}
+
+@keyframes finalIncorrect {
+    0% { 
+        transform: scale(1);
+        background: transparent;
+    }
+    25% { 
+        transform: scale(1.1) rotate(-3deg);
+        background: rgba(220, 53, 69, 0.2);
+    }
+    50% { 
+        transform: scale(1.2) rotate(3deg);
+        background: rgba(220, 53, 69, 0.3);
+        box-shadow: 0 0 15px rgba(220, 53, 69, 0.5);
+    }
+    75% { 
+        transform: scale(1.1) rotate(-2deg);
+    }
+    100% { 
+        transform: scale(1.05) rotate(0deg);
+        background: rgba(220, 53, 69, 0.1);
+        box-shadow: 0 0 5px rgba(220, 53, 69, 0.2);
+    }
+}
+
+
+
+/* Alphabet Buttons */
+.alphabet-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(45px, 1fr));
+    gap: 8px;
+    max-width: 600px;
+    width: 100%;
+}
+
+.letter-btn {
+    width: 45px;
+    height: 45px;
+    border: 2px solid #2c003e;
+    background: white;
+    color: #2c003e;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.letter-btn:hover {
+    background: #2c003e;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+.letter-btn:active {
+    transform: translateY(0px);
+}
+
+/* Button States */
+.letter-btn.correct {
+    background: #28a745;
+    border-color: #28a745;
+    color: white;
+    cursor: not-allowed;
+    animation: correctGuess 0.6s ease;
+}
+
+.letter-btn.incorrect {
+    background: #dc3545;
+    border-color: #dc3545;
+    color: white;
+    cursor: not-allowed;
+    animation: incorrectGuess 0.6s ease;
+}
+
+.letter-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+@keyframes correctGuess {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); background: #20c997; }
+    100% { transform: scale(1); }
+}
+
+@keyframes incorrectGuess {
+    0% { transform: scale(1) rotate(0deg); }
+    25% { transform: scale(1.1) rotate(-5deg); }
+    75% { transform: scale(1.1) rotate(5deg); }
+    100% { transform: scale(1) rotate(0deg); }
+}
+
+/* Game Status Messages */
+.game-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    height: 0px;
+    transition: all 0.3s ease;
+    border-radius: 20px;
+    margin: 15px;
+}
+
+.status-message {
+    background: rgb(255, 255, 255);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+}
+
+.status-message h2 {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+}
+
+.status-message p {
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.correct-word {
+    color: #dc3545;
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+/* Game State Classes */
+.game-won.game-status {
+    height: auto;
+    opacity: 1;
+    visibility: visible;
+}
+
+.game-won .win-message {
+    display: block;
+    transform: scale(1);
+}
+
+.game-won .lose-message {
+    display: none;
+}
+
+.game-lost.game-status {
+    height: auto;
+    opacity: 1;
+    visibility: visible;
+}
+
+.game-lost .lose-message {
+    display: block;
+    transform: scale(1);
+}
+
+.game-lost .win-message {
+    display: none;
+}
+
+.win-message h2 {
+    color: #28a745;
+}
+
+.lose-message h2 {
+    color: #dc3545;
+}
+
+/* Control Buttons */
+.game-footer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.control-btn {
+    padding: 12px 25px;
+    border: 2px solid #2c003e;
+    background: white;
+    color: #2c003e;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.control-btn:hover {
+    background: #2c003e;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+.new-game-btn {
+    border-color: #28a745;
+    color: #28a745;
+}
+
+.new-game-btn:hover {
+    background: #28a745;
+    color: white;
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+}
+
+#header {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 40px;
+}

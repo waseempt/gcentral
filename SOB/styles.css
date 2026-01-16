@@ -1,0 +1,332 @@
+#gamediv , body {
+    background-color: #2c003e;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+h1, h2, h3, h4, h5, h6, p, td, span, label, button, input, li {
+    color: #ffffff;
+    font-family: 'lucida console', monospace;
+}
+
+#navback {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+#mainlogo {
+    width: 400px;
+    height: auto;
+}
+
+#header {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 40px;
+    width: 100%;
+}
+
+#menudiv {
+    text-align: center;
+    margin-top: 100px;
+    border-radius: 15px;
+    background-color: #4c0e5f;
+    color: white;
+    width: 70%;
+}
+
+#title {
+    font-size: 90px;
+    margin-bottom: 20px;
+}
+
+#inputdiv {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+#namefield {
+    padding: 10px;
+    font-size: 30px;
+    text-align: center;
+    width: 500px;
+    border-radius: 100px;
+    border: solid 2px white;
+    margin-bottom: 20px;
+}
+
+#startbtn{
+    padding: 10px 20px;
+    font-size: 30px;
+    border-radius: 100px;
+    border: solid 2px white;
+    margin: 10px;
+    cursor: pointer;
+    background-color: #ffffff;
+    color: #4c0e5f;
+
+    transition: all 0.3s ease;
+}
+.rulesbtn {
+    padding: 10px 20px;
+    font-size: 30px;
+    border-radius: 100px;
+    border: solid 2px white;
+    margin: 10px;
+    cursor: pointer;
+    color: #ffffff;
+    background-color: #4c0e5f;
+    transition: all 0.3s ease;
+}
+.btng {
+    padding: 7px 20px;
+    font-size: 15px;
+    border-radius: 100px;
+    border: solid 2px white;
+    margin: 10px;
+    min-width: 150px;
+    cursor: pointer;
+    color: #ffffff;
+    background-color: transparent;
+    transition: all 0.3s ease;
+}
+
+#cardback {
+    transition: all 0.3s ease;
+    border: none;
+}
+
+#rulesdivm {
+    text-align: left;
+    margin: 20px auto;
+    padding: 20px;
+    width: 800px;
+    max-height: 400px;
+    overflow: auto;
+    scrollbar-color: #6a1b8a transparent;
+    background-color: #2c003e;
+    border-radius: 15px;
+}
+
+#rulesdivg {
+    text-align: left;
+    color: white;
+    margin: 20px auto;
+    padding: 20px;
+    width: 1300px;
+    max-height: 600px;
+    overflow: auto;
+    background-color: #6a1b8a;
+    scrollbar-color: #2c003e transparent;
+    border-radius: 15px;
+}
+
+#rulesdivg h1 {
+    text-align: center;
+}
+
+td {
+    text-align: center;
+    vertical-align: middle;
+    border: 2px solid transparent;
+}
+
+#mapgrid {
+    width: 780px;
+    height: 780px;
+    background-image: url('media/map.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+    margin: 0;
+    gap: 0;
+    padding: 0;
+    border-collapse: collapse;
+}
+
+#mapcanvas {
+    position: absolute;
+    width: 780px;
+    height: 780px;
+    margin: 0;
+    pointer-events: none;
+    background-color: transparent;
+}
+
+#scoring{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 90%;
+}
+
+#livescoretable{
+    width: 100%;
+    align-items: left;
+}
+
+.tableround {
+    text-align: left;
+}
+
+.tablescore {
+    text-align: right;
+}
+
+.card {
+    width: 300px;
+    margin-bottom: 10px;
+    height: auto;
+    border: 2px solid white;
+    border-radius: 10px;
+    background-color: white;
+}
+
+#gameplaydiv {
+    gap: 20px;
+    padding-top: 100px;
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+#leftpanel, #rightpanel {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    height: 780px;
+    border-radius: 15px;
+    align-items: center;
+}
+
+#leftpanel {
+    /* align left panel to left of the flex div it is in */
+    justify-content: flex-start;
+    min-width: 350px;
+    margin-right: auto;
+}
+#rightpanel {
+    /* align right panel to right of the flex div it is in */
+    justify-content: flex-end;
+    min-width: 350px;
+    margin-left: auto;
+}
+
+#railwayprog{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#timer {
+    font-size: 80px;
+}
+
+#playername {
+    font-size: 60px;
+    margin: 20px 0px;
+}
+
+#centralpanel {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 0 auto;
+    width: 780px;
+    height: 780px;
+}
+
+#errormessage {
+    position: fixed;
+    top: 0;
+    color: red;
+}
+
+.selected-station {
+    box-shadow: inset 0 0 10px 5px rgb(251, 255, 0);
+    border-radius: 300px;
+}
+
+.hidden {
+    display: none;
+}
+
+.flexrow{
+    display: flex;
+    flex-direction: row;
+}
+
+.flexcol{
+    display: flex;
+    flex-direction: column;
+}
+
+#menuscores {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 0;
+    margin-top: auto;
+}
+
+#highscoresm{
+    border: none;
+    background-color: #2c003e;
+    margin-top: auto;
+    width: 80%;
+    border-collapse: collapse;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+#menuscores {
+    max-height: 400px;
+    overflow: auto;
+    scrollbar-color: #2c003e transparent;
+    margin-bottom: 20px;
+
+}
+
+#highscoresm td{
+    border-bottom: 2px solid #4c0e5f;
+    padding: 10px;
+    overflow: hidden;
+    border-radius: 15px;
+    text-align: left;
+}
+
+#highscoresm tr:last-child td {
+    border-bottom: none;
+}
+
+#startbtn:hover {
+    color:#2c003e;
+    transform: scale(1.1);
+}
+
+.rulesbtn:hover {
+    transform: scale(1.1);
+}
+
+.btng:hover {
+    transform: scale(1.1);
+}
+
+#cardback:hover {
+    transform: scale(1.05);
+}
